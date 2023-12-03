@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"package": "andrealeet.mixin.client",
+	"compatibilityLevel": "JAVA_17",
+	"client": [
+      	"PacketInteractionMixin",
+		"ClickSlotC2SPacketMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
