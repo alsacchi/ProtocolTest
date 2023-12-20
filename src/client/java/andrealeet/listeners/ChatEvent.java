@@ -1,7 +1,6 @@
 package andrealeet.listeners;
 
 import andrealeet.listener.CancellableEvent;
-import andrealeet.listener.Event;
 
 import java.util.ArrayList;
 
