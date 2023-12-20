@@ -14,8 +14,12 @@ public class ChatParser implements ChatListener {
         System.out.println(event.getMessage());
         if(event.getOriginalMessage().startsWith("/")) {
             if (event.getMessage().split(" ")[0].equals("/set")) {
-                ProtocolTestMod.INSTANCE.setIter(Integer.parseInt(event.getMessage().split(" ")[1]));
                 event.cancel();
+                if(event.getMessage().length() < 5) return;
+                String numberString = event.getMessage().split(" ")[1];
+                int number = Integer.parseInt(numberString);
+                ProtocolTestMod.INSTANCE.setIter(number);
+
             }
         }
     }
