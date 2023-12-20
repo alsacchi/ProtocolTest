@@ -15,6 +15,7 @@ public enum ProtocolTestMod {
     private EventManager eventManager;
     private PacketEventManager packetEventManager;
 
+
 //    private TestMod testMod =
 //    private ChatParser chatParser =
 

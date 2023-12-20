@@ -5,7 +5,8 @@
 	"client": [
       	"PacketInteractionMixin",
 		"ClickSlotC2SPacketMixin",
-		"ChatScreenMixin"
+		"ChatScreenMixin",
+		"KeyboardMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

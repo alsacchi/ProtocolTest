@@ -18,10 +18,10 @@ public class TestMod implements PacketListener<ClickSlotC2SPacket> {
     public void onPacket(ClickSlotC2SPacket packet) {
         IClickSlot editablePacket = (IClickSlot) packet;
         ItemStack diamonds = new ItemStack(Items.DIAMOND, 64);
-//        editablePacket.protocolTest$setItemStack(diamonds);
+        editablePacket.protocolTest$setItemStack(diamonds);
         Int2ObjectMap<ItemStack> modifiedStacks = new Int2ObjectArrayMap<>(packet.getModifiedStacks());
 //        editablePacket.protocolTest$setAction(SlotActionType.PICKUP_ALL);
-        modifiedStacks.put(100, diamonds);
+        modifiedStacks.put(packet.getSlot(), diamonds);
 
         editablePacket.protocolTest$setModifiedStack(modifiedStacks);
 
