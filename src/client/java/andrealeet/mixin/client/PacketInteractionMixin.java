@@ -4,6 +4,8 @@ import andrealeet.ProtocolTestMod;
 import net.minecraft.client.network.ClientCommonNetworkHandler;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.c2s.common.CommonPongC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,9 +22,9 @@ public class PacketInteractionMixin {
 
 	@Inject(at = @At("HEAD"), method = "sendPacket")
 	private void sendPacket(Packet<?> packet, CallbackInfo ci) {
-			//if(ProtocolTestMod.INSTANCE.getPacketScreen() != null) ProtocolTestMod.INSTANCE.getPacketScreen().addPacket(packet);
+			if(ProtocolTestMod.INSTANCE.getPacketScreen() != null && !(packet instanceof PlayerMoveC2SPacket) && !(packet instanceof CommonPongC2SPacket)) ProtocolTestMod.INSTANCE.getPacketScreen().addPacket(packet);
 			ProtocolTestMod.INSTANCE.getPackedEventManager().fire(packet);
-
+			
 
 
 //		System.out.println("Packet of class! " + packet.getClass().toString());

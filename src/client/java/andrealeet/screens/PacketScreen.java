@@ -1,6 +1,7 @@
 package andrealeet.screens;
 
 import andrealeet.ProtocolTestMod;
+import andrealeet.screens.entries.PacketEntry;
 import andrealeet.screens.widgets.PacketListWidget;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -11,6 +12,7 @@ import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PacketScreen extends Screen {
 
@@ -33,6 +35,7 @@ public class PacketScreen extends Screen {
         packetWidget = new PacketListWidget(ProtocolTestMod.MC, this.width / 4 + 10, this.height, 5, this.height - 5, 30, this, packets);
         this.addSelectableChild(this.packetWidget);
         this.addDrawableChild(ButtonWidget.builder(Text.of("X"), (button) ->  this.clear()).dimensions(this.width - 20, 0, 20, 20).build());
+        this.addDrawableChild(ButtonWidget.builder(Text.of("R"), (button) ->  this.resendSelected()).dimensions(this.width - 20, 25, 20, 20).build());
         multilineTextWidget = new MultilineTextWidget(this.width / 4 + 40, 0, Text.of(""), this.client.textRenderer);
         multilineTextWidget.setMaxWidth(500);
         multilineTextWidget.setCentered(true);
@@ -45,6 +48,12 @@ public class PacketScreen extends Screen {
     private void clear() {
         packets.clear();
         packetWidget.clear();
+    }
+
+    private void resendSelected() {
+        PacketEntry entry = this.packetWidget.getSelectedOrNull();
+        if(entry != null) Objects.requireNonNull(ProtocolTestMod.MC.getNetworkHandler()).sendPacket(entry.getPacket());
+
     }
 
     public void addPacket(Packet<?> packet) {

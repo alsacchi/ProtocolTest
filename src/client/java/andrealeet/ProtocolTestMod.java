@@ -29,8 +29,8 @@ public enum ProtocolTestMod {
         packetEventManager = new PacketEventManager();
         new TestMod();
         new ChatParser();
-        new CustomPayloadC2SMod();
-        new CustomPayloadS2CMod();
+//        new CustomPayloadC2SMod();
+//        new CustomPayloadS2CMod();
 
     }
 
