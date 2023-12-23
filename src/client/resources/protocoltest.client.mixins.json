@@ -3,11 +3,11 @@
 	"package": "andrealeet.mixin.client",
 	"compatibilityLevel": "JAVA_17",
 	"client": [
-      	"PacketInteractionMixin",
-		"ClickSlotC2SPacketMixin",
-		"ChatScreenMixin",
-		"KeyboardMixin"
-	],
+      "ChatScreenMixin",
+      "ClickSlotC2SPacketMixin",
+      "KeyboardMixin",
+      "PacketInteractionMixin"
+    ],
 	"injectors": {
 		"defaultRequire": 1
 	}

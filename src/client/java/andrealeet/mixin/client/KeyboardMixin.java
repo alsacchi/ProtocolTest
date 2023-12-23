@@ -16,7 +16,8 @@ public class KeyboardMixin {
     private void processF3(int key, CallbackInfoReturnable<Boolean> ci) {
         switch(key) {
             case 78:
-                ProtocolTestMod.MC.setScreen(new PacketScreen());
+                if(ProtocolTestMod.INSTANCE.getPacketScreen() == null) ProtocolTestMod.INSTANCE.setPacketScreen(new PacketScreen());
+                ProtocolTestMod.MC.setScreen(ProtocolTestMod.INSTANCE.getPacketScreen());
                 ci.setReturnValue(true);
                 break;
         }

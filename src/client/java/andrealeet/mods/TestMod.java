@@ -16,6 +16,7 @@ public class TestMod implements PacketListener<ClickSlotC2SPacket> {
     }
     @Override
     public void onPacket(ClickSlotC2SPacket packet) {
+        if(ProtocolTestMod.INSTANCE.getPacketScreen() != null) ProtocolTestMod.INSTANCE.getPacketScreen().addPacket(packet);
         IClickSlot editablePacket = (IClickSlot) packet;
         ItemStack diamonds = new ItemStack(Items.DIAMOND, 64);
         editablePacket.protocolTest$setItemStack(diamonds);
@@ -28,4 +29,5 @@ public class TestMod implements PacketListener<ClickSlotC2SPacket> {
         System.out.printf("Slot: %d, ItemStack: %s, Action: %s\n", packet.getSlot(), packet.getStack(), packet.getActionType());
 
     }
+
 }

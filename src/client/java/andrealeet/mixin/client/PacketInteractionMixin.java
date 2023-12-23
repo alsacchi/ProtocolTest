@@ -20,7 +20,7 @@ public class PacketInteractionMixin {
 
 	@Inject(at = @At("HEAD"), method = "sendPacket")
 	private void sendPacket(Packet<?> packet, CallbackInfo ci) {
-
+			//if(ProtocolTestMod.INSTANCE.getPacketScreen() != null) ProtocolTestMod.INSTANCE.getPacketScreen().addPacket(packet);
 			ProtocolTestMod.INSTANCE.getPackedEventManager().fire(packet);
 
 
