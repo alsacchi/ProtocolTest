@@ -2,10 +2,7 @@ package andrealeet;
 
 import andrealeet.listener.EventManager;
 import andrealeet.listener.PacketEventManager;
-import andrealeet.mods.ChatParser;
-import andrealeet.mods.CustomPayloadC2SMod;
-import andrealeet.mods.CustomPayloadS2CMod;
-import andrealeet.mods.TestMod;
+import andrealeet.mods.*;
 import andrealeet.screens.PacketScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
@@ -20,6 +17,7 @@ public enum ProtocolTestMod {
 
     private PacketScreen packetScreen;
 
+    private IgnorePacketMod ignorePacketMod;
 
 //    private TestMod testMod =
 //    private ChatParser chatParser =
@@ -29,6 +27,7 @@ public enum ProtocolTestMod {
         packetEventManager = new PacketEventManager();
         new TestMod();
         new ChatParser();
+        ignorePacketMod = new IgnorePacketMod();
 //        new CustomPayloadC2SMod();
 //        new CustomPayloadS2CMod();
 
@@ -43,7 +42,9 @@ public enum ProtocolTestMod {
         return packetEventManager;
     }
 
-
+    public IgnorePacketMod getIgnorePacketMod() {
+        return ignorePacketMod;
+    }
     public int getIter() {
         return iter;
     }

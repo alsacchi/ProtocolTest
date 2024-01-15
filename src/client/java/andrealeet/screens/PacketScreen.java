@@ -34,8 +34,10 @@ public class PacketScreen extends Screen {
     protected void init() {
         packetWidget = new PacketListWidget(ProtocolTestMod.MC, this.width / 4 + 10, this.height, 5, this.height - 5, 30, this, packets);
         this.addSelectableChild(this.packetWidget);
-        this.addDrawableChild(ButtonWidget.builder(Text.of("X"), (button) ->  this.clear()).dimensions(this.width - 20, 0, 20, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.of("R"), (button) ->  this.resendSelected()).dimensions(this.width - 20, 25, 20, 20).build());
+        this.addDrawableChild(ButtonWidget.builder(Text.of("X"), (button) ->  super.close()).dimensions(this.width - 20, 0, 20, 20).build());
+        this.addDrawableChild(ButtonWidget.builder(Text.of("C"), (button) ->  this.clear()).dimensions(this.width - 20, 25, 20, 20).build());
+        this.addDrawableChild(ButtonWidget.builder(Text.of("R"), (button) ->  this.resendSelected()).dimensions(this.width - 20, 50, 20, 20).build());
+        this.addDrawableChild(ButtonWidget.builder(Text.of("D"), (button) ->  this.dropSelected()).dimensions(this.width - 20, 75, 20, 20).build());
         multilineTextWidget = new MultilineTextWidget(this.width / 4 + 40, 0, Text.of(""), this.client.textRenderer);
         multilineTextWidget.setMaxWidth(500);
         multilineTextWidget.setCentered(true);
@@ -43,6 +45,11 @@ public class PacketScreen extends Screen {
 //        for(int i = 0; i < 100; i++) {
 //            packetWidget.addPacket(new PacketEntry(packetWidget, i + 1));
 //        }
+    }
+
+    private void dropSelected() {
+        PacketEntry entry = this.packetWidget.getSelectedOrNull();
+        if(entry != null) ProtocolTestMod.INSTANCE.getIgnorePacketMod().togglePacketClass(entry.getPacket().getClass());
     }
 
     private void clear() {
@@ -71,5 +78,8 @@ public class PacketScreen extends Screen {
         this.packetWidget.render(context, mouseX, mouseY, delta);
     }
 
-
+    @Override
+    public void close() {
+        super.close();
+    }
 }
